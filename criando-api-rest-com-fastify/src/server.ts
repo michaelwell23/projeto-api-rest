@@ -1,3 +1,4 @@
+import { env } from './env/index';
 import fastify from 'fastify';
 import crypto from 'crypto';
 import { knex } from './connections/database';
@@ -16,6 +17,6 @@ app.get('/', async () => {
   return transactions;
 });
 
-app.listen({ port: 3000 }).then(() => {
+app.listen({ port: env.PORT }).then(() => {
   console.log('Server is running at http://localhost:3000');
 });
