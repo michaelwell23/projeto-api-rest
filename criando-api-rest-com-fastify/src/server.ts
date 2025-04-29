@@ -2,21 +2,12 @@ import { env } from './env/index';
 import fastify from 'fastify';
 import crypto from 'crypto';
 import { knex } from './connections/database';
+import { transactionsRoutes } from './routes/transactions';
 
 const app = fastify();
 
-app.get('/', async () => {
-  const transactions = await knex('transactions')
-    .insert({
-      id: crypto.randomUUID(),
-      title: 'Test Transection',
-      amount: 1000,
-    })
-    .returning('*');
+app.register(transactionsRoutes);
 
-  return transactions;
-});
-
-app.listen({ port: env.PORT }).then(() => {
+app.listen({ port: 3000 }).then(() => {
   console.log('Server is running at http://localhost:3000');
 });
