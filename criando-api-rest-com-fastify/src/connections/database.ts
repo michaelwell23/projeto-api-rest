@@ -12,7 +12,7 @@ export const config: Knex.Config = {
   useNullAsDefault: true,
   migrations: {
     extension: 'ts',
-    directory: './migrations',
+    directory: './src/connections/migrations',
   },
 };
 
