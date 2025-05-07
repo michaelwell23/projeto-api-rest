@@ -8,13 +8,13 @@ const app = fastify();
 
 app.register(fastifyCookie);
 
-app.addHook('preHandler', (request) => {
-  if (request.cookies.sessionId) {
-    console.log(
-      `[${request.method}] ${request.url} - Session ID: ${request.cookies.sessionId}`
-    );
-  }
-});
+// app.addHook('preHandler', (request) => {
+//   if (request.cookies.sessionId) {
+//     console.log(
+//       `[${request.method}] ${request.url} - Session ID: ${request.cookies.sessionId}`
+//     );
+//   }
+// });
 
 app.register(transactionsRoutes, {
   prefix: 'transactions',
