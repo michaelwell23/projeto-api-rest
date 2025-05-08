@@ -1,24 +1,5 @@
-/* eslint-disable prettier/prettier */
-import { env } from './env/index';
-import fastify from 'fastify';
-import { transactionsRoutes } from './routes/transactions';
-import fastifyCookie from '@fastify/cookie';
-
-const app = fastify();
-
-app.register(fastifyCookie);
-
-// app.addHook('preHandler', (request) => {
-//   if (request.cookies.sessionId) {
-//     console.log(
-//       `[${request.method}] ${request.url} - Session ID: ${request.cookies.sessionId}`
-//     );
-//   }
-// });
-
-app.register(transactionsRoutes, {
-  prefix: 'transactions',
-});
+import app from './app';
+import { env } from './env/';
 
 app.listen({ port: env.PORT }).then(() => {
   console.log(`Server is running at http://localhost:${env.PORT}`);
