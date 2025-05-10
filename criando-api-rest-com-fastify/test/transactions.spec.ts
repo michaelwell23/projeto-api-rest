@@ -36,7 +36,7 @@ describe('Transactions routes', () => {
 
     const listTransactionsResponse = await request(app.server)
       .get('/transactions')
-      .set('Cookie', cookies)
+      .set('Cookie', cookies || [])
       .expect(200);
 
     expect(listTransactionsResponse.body.transactions).toEqual([
