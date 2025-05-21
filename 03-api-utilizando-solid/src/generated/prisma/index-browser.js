@@ -124,9 +124,25 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
-  password: 'password',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  password_hashs: 'password_hashs',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CheckInScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  is_validated: 'is_validated',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.GymScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  phone: 'phone',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -146,7 +162,9 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  CheckIn: 'CheckIn',
+  Gym: 'Gym'
 };
 
 /**
