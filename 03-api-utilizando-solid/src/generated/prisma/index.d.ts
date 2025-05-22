@@ -1046,6 +1046,67 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    checkIns: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    checkIns?: boolean | UserCountOutputTypeCountCheckInsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCheckInsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CheckInWhereInput
+  }
+
+
+  /**
+   * Count Type GymCountOutputType
+   */
+
+  export type GymCountOutputType = {
+    checkIn: number
+  }
+
+  export type GymCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    checkIn?: boolean | GymCountOutputTypeCountCheckInArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GymCountOutputType without action
+   */
+  export type GymCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GymCountOutputType
+     */
+    select?: GymCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GymCountOutputType without action
+   */
+  export type GymCountOutputTypeCountCheckInArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CheckInWhereInput
+  }
+
 
   /**
    * Models
@@ -1065,7 +1126,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     email: string | null
-    password_hashs: string | null
+    password_hash: string | null
     createdAt: Date | null
   }
 
@@ -1073,7 +1134,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     email: string | null
-    password_hashs: string | null
+    password_hash: string | null
     createdAt: Date | null
   }
 
@@ -1081,7 +1142,7 @@ export namespace Prisma {
     id: number
     name: number
     email: number
-    password_hashs: number
+    password_hash: number
     createdAt: number
     _all: number
   }
@@ -1091,7 +1152,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
-    password_hashs?: true
+    password_hash?: true
     createdAt?: true
   }
 
@@ -1099,7 +1160,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
-    password_hashs?: true
+    password_hash?: true
     createdAt?: true
   }
 
@@ -1107,7 +1168,7 @@ export namespace Prisma {
     id?: true
     name?: true
     email?: true
-    password_hashs?: true
+    password_hash?: true
     createdAt?: true
     _all?: true
   }
@@ -1188,7 +1249,7 @@ export namespace Prisma {
     id: string
     name: string
     email: string
-    password_hashs: string
+    password_hash: string
     createdAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -1213,15 +1274,17 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
-    password_hashs?: boolean
+    password_hash?: boolean
     createdAt?: boolean
+    checkIns?: boolean | User$checkInsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     email?: boolean
-    password_hashs?: boolean
+    password_hash?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1229,7 +1292,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
-    password_hashs?: boolean
+    password_hash?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -1237,20 +1300,28 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     email?: boolean
-    password_hashs?: boolean
+    password_hash?: boolean
     createdAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password_hashs" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password_hash" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    checkIns?: boolean | User$checkInsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      checkIns: Prisma.$CheckInPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       email: string
-      password_hashs: string
+      password_hash: string
       createdAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -1646,6 +1717,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    checkIns<T extends User$checkInsArgs<ExtArgs> = {}>(args?: Subset<T, User$checkInsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CheckInPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1678,7 +1750,7 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
-    readonly password_hashs: FieldRef<"User", 'String'>
+    readonly password_hash: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
   }
     
@@ -1696,6 +1768,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1715,6 +1791,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1732,6 +1812,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1781,6 +1865,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1829,6 +1917,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1871,6 +1963,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -1919,6 +2015,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1986,6 +2086,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -2012,6 +2116,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -2032,6 +2140,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.checkIns
+   */
+  export type User$checkInsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckIn
+     */
+    select?: CheckInSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CheckIn
+     */
+    omit?: CheckInOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
+    where?: CheckInWhereInput
+    orderBy?: CheckInOrderByWithRelationInput | CheckInOrderByWithRelationInput[]
+    cursor?: CheckInWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CheckInScalarFieldEnum | CheckInScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2043,6 +2175,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -2058,46 +2194,52 @@ export namespace Prisma {
 
   export type CheckInMinAggregateOutputType = {
     id: string | null
-    userId: string | null
     is_validated: Date | null
-    createdAt: Date | null
+    created_at: string | null
+    user_id: string | null
+    gym_id: string | null
   }
 
   export type CheckInMaxAggregateOutputType = {
     id: string | null
-    userId: string | null
     is_validated: Date | null
-    createdAt: Date | null
+    created_at: string | null
+    user_id: string | null
+    gym_id: string | null
   }
 
   export type CheckInCountAggregateOutputType = {
     id: number
-    userId: number
     is_validated: number
-    createdAt: number
+    created_at: number
+    user_id: number
+    gym_id: number
     _all: number
   }
 
 
   export type CheckInMinAggregateInputType = {
     id?: true
-    userId?: true
     is_validated?: true
-    createdAt?: true
+    created_at?: true
+    user_id?: true
+    gym_id?: true
   }
 
   export type CheckInMaxAggregateInputType = {
     id?: true
-    userId?: true
     is_validated?: true
-    createdAt?: true
+    created_at?: true
+    user_id?: true
+    gym_id?: true
   }
 
   export type CheckInCountAggregateInputType = {
     id?: true
-    userId?: true
     is_validated?: true
-    createdAt?: true
+    created_at?: true
+    user_id?: true
+    gym_id?: true
     _all?: true
   }
 
@@ -2175,9 +2317,10 @@ export namespace Prisma {
 
   export type CheckInGroupByOutputType = {
     id: string
-    userId: string
     is_validated: Date | null
-    createdAt: Date
+    created_at: string
+    user_id: string
+    gym_id: string
     _count: CheckInCountAggregateOutputType | null
     _min: CheckInMinAggregateOutputType | null
     _max: CheckInMaxAggregateOutputType | null
@@ -2199,42 +2342,68 @@ export namespace Prisma {
 
   export type CheckInSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
     is_validated?: boolean
-    createdAt?: boolean
+    created_at?: boolean
+    user_id?: boolean
+    gym_id?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    gym?: boolean | GymDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["checkIn"]>
 
   export type CheckInSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
     is_validated?: boolean
-    createdAt?: boolean
+    created_at?: boolean
+    user_id?: boolean
+    gym_id?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    gym?: boolean | GymDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["checkIn"]>
 
   export type CheckInSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    userId?: boolean
     is_validated?: boolean
-    createdAt?: boolean
+    created_at?: boolean
+    user_id?: boolean
+    gym_id?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    gym?: boolean | GymDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["checkIn"]>
 
   export type CheckInSelectScalar = {
     id?: boolean
-    userId?: boolean
     is_validated?: boolean
-    createdAt?: boolean
+    created_at?: boolean
+    user_id?: boolean
+    gym_id?: boolean
   }
 
-  export type CheckInOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "is_validated" | "createdAt", ExtArgs["result"]["checkIn"]>
+  export type CheckInOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "is_validated" | "created_at" | "user_id" | "gym_id", ExtArgs["result"]["checkIn"]>
+  export type CheckInInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    gym?: boolean | GymDefaultArgs<ExtArgs>
+  }
+  export type CheckInIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    gym?: boolean | GymDefaultArgs<ExtArgs>
+  }
+  export type CheckInIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    gym?: boolean | GymDefaultArgs<ExtArgs>
+  }
 
   export type $CheckInPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CheckIn"
-    objects: {}
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      gym: Prisma.$GymPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string
       is_validated: Date | null
-      createdAt: Date
+      created_at: string
+      user_id: string
+      gym_id: string
     }, ExtArgs["result"]["checkIn"]>
     composites: {}
   }
@@ -2629,6 +2798,8 @@ export namespace Prisma {
    */
   export interface Prisma__CheckInClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    gym<T extends GymDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GymDefaultArgs<ExtArgs>>): Prisma__GymClient<$Result.GetResult<Prisma.$GymPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2659,9 +2830,10 @@ export namespace Prisma {
    */
   interface CheckInFieldRefs {
     readonly id: FieldRef<"CheckIn", 'String'>
-    readonly userId: FieldRef<"CheckIn", 'String'>
     readonly is_validated: FieldRef<"CheckIn", 'DateTime'>
-    readonly createdAt: FieldRef<"CheckIn", 'DateTime'>
+    readonly created_at: FieldRef<"CheckIn", 'String'>
+    readonly user_id: FieldRef<"CheckIn", 'String'>
+    readonly gym_id: FieldRef<"CheckIn", 'String'>
   }
     
 
@@ -2678,6 +2850,10 @@ export namespace Prisma {
      * Omit specific fields from the CheckIn
      */
     omit?: CheckInOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
     /**
      * Filter, which CheckIn to fetch.
      */
@@ -2697,6 +2873,10 @@ export namespace Prisma {
      */
     omit?: CheckInOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
+    /**
      * Filter, which CheckIn to fetch.
      */
     where: CheckInWhereUniqueInput
@@ -2714,6 +2894,10 @@ export namespace Prisma {
      * Omit specific fields from the CheckIn
      */
     omit?: CheckInOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
     /**
      * Filter, which CheckIn to fetch.
      */
@@ -2763,6 +2947,10 @@ export namespace Prisma {
      */
     omit?: CheckInOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
+    /**
      * Filter, which CheckIn to fetch.
      */
     where?: CheckInWhereInput
@@ -2811,6 +2999,10 @@ export namespace Prisma {
      */
     omit?: CheckInOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
+    /**
      * Filter, which CheckIns to fetch.
      */
     where?: CheckInWhereInput
@@ -2854,6 +3046,10 @@ export namespace Prisma {
      */
     omit?: CheckInOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
+    /**
      * The data needed to create a CheckIn.
      */
     data: XOR<CheckInCreateInput, CheckInUncheckedCreateInput>
@@ -2887,6 +3083,10 @@ export namespace Prisma {
      */
     data: CheckInCreateManyInput | CheckInCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2901,6 +3101,10 @@ export namespace Prisma {
      * Omit specific fields from the CheckIn
      */
     omit?: CheckInOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
     /**
      * The data needed to update a CheckIn.
      */
@@ -2953,6 +3157,10 @@ export namespace Prisma {
      * Limit how many CheckIns to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2967,6 +3175,10 @@ export namespace Prisma {
      * Omit specific fields from the CheckIn
      */
     omit?: CheckInOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
     /**
      * The filter to search for the CheckIn to update in case it exists.
      */
@@ -2993,6 +3205,10 @@ export namespace Prisma {
      * Omit specific fields from the CheckIn
      */
     omit?: CheckInOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
     /**
      * Filter which CheckIn to delete.
      */
@@ -3025,6 +3241,10 @@ export namespace Prisma {
      * Omit specific fields from the CheckIn
      */
     omit?: CheckInOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
   }
 
 
@@ -3057,7 +3277,6 @@ export namespace Prisma {
     phone: string | null
     latitude: Decimal | null
     longitude: Decimal | null
-    createdAt: Date | null
   }
 
   export type GymMaxAggregateOutputType = {
@@ -3067,7 +3286,6 @@ export namespace Prisma {
     phone: string | null
     latitude: Decimal | null
     longitude: Decimal | null
-    createdAt: Date | null
   }
 
   export type GymCountAggregateOutputType = {
@@ -3077,7 +3295,6 @@ export namespace Prisma {
     phone: number
     latitude: number
     longitude: number
-    createdAt: number
     _all: number
   }
 
@@ -3099,7 +3316,6 @@ export namespace Prisma {
     phone?: true
     latitude?: true
     longitude?: true
-    createdAt?: true
   }
 
   export type GymMaxAggregateInputType = {
@@ -3109,7 +3325,6 @@ export namespace Prisma {
     phone?: true
     latitude?: true
     longitude?: true
-    createdAt?: true
   }
 
   export type GymCountAggregateInputType = {
@@ -3119,7 +3334,6 @@ export namespace Prisma {
     phone?: true
     latitude?: true
     longitude?: true
-    createdAt?: true
     _all?: true
   }
 
@@ -3216,7 +3430,6 @@ export namespace Prisma {
     phone: string | null
     latitude: Decimal
     longitude: Decimal
-    createdAt: Date
     _count: GymCountAggregateOutputType | null
     _avg: GymAvgAggregateOutputType | null
     _sum: GymSumAggregateOutputType | null
@@ -3245,7 +3458,8 @@ export namespace Prisma {
     phone?: boolean
     latitude?: boolean
     longitude?: boolean
-    createdAt?: boolean
+    checkIn?: boolean | Gym$checkInArgs<ExtArgs>
+    _count?: boolean | GymCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["gym"]>
 
   export type GymSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3255,7 +3469,6 @@ export namespace Prisma {
     phone?: boolean
     latitude?: boolean
     longitude?: boolean
-    createdAt?: boolean
   }, ExtArgs["result"]["gym"]>
 
   export type GymSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3265,7 +3478,6 @@ export namespace Prisma {
     phone?: boolean
     latitude?: boolean
     longitude?: boolean
-    createdAt?: boolean
   }, ExtArgs["result"]["gym"]>
 
   export type GymSelectScalar = {
@@ -3275,14 +3487,21 @@ export namespace Prisma {
     phone?: boolean
     latitude?: boolean
     longitude?: boolean
-    createdAt?: boolean
   }
 
-  export type GymOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "phone" | "latitude" | "longitude" | "createdAt", ExtArgs["result"]["gym"]>
+  export type GymOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "phone" | "latitude" | "longitude", ExtArgs["result"]["gym"]>
+  export type GymInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    checkIn?: boolean | Gym$checkInArgs<ExtArgs>
+    _count?: boolean | GymCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type GymIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type GymIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $GymPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Gym"
-    objects: {}
+    objects: {
+      checkIn: Prisma.$CheckInPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string
@@ -3290,7 +3509,6 @@ export namespace Prisma {
       phone: string | null
       latitude: Prisma.Decimal
       longitude: Prisma.Decimal
-      createdAt: Date
     }, ExtArgs["result"]["gym"]>
     composites: {}
   }
@@ -3685,6 +3903,7 @@ export namespace Prisma {
    */
   export interface Prisma__GymClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    checkIn<T extends Gym$checkInArgs<ExtArgs> = {}>(args?: Subset<T, Gym$checkInArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CheckInPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3720,7 +3939,6 @@ export namespace Prisma {
     readonly phone: FieldRef<"Gym", 'String'>
     readonly latitude: FieldRef<"Gym", 'Decimal'>
     readonly longitude: FieldRef<"Gym", 'Decimal'>
-    readonly createdAt: FieldRef<"Gym", 'DateTime'>
   }
     
 
@@ -3737,6 +3955,10 @@ export namespace Prisma {
      * Omit specific fields from the Gym
      */
     omit?: GymOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
     /**
      * Filter, which Gym to fetch.
      */
@@ -3756,6 +3978,10 @@ export namespace Prisma {
      */
     omit?: GymOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
+    /**
      * Filter, which Gym to fetch.
      */
     where: GymWhereUniqueInput
@@ -3773,6 +3999,10 @@ export namespace Prisma {
      * Omit specific fields from the Gym
      */
     omit?: GymOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
     /**
      * Filter, which Gym to fetch.
      */
@@ -3822,6 +4052,10 @@ export namespace Prisma {
      */
     omit?: GymOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
+    /**
      * Filter, which Gym to fetch.
      */
     where?: GymWhereInput
@@ -3870,6 +4104,10 @@ export namespace Prisma {
      */
     omit?: GymOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
+    /**
      * Filter, which Gyms to fetch.
      */
     where?: GymWhereInput
@@ -3912,6 +4150,10 @@ export namespace Prisma {
      * Omit specific fields from the Gym
      */
     omit?: GymOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
     /**
      * The data needed to create a Gym.
      */
@@ -3960,6 +4202,10 @@ export namespace Prisma {
      * Omit specific fields from the Gym
      */
     omit?: GymOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
     /**
      * The data needed to update a Gym.
      */
@@ -4027,6 +4273,10 @@ export namespace Prisma {
      */
     omit?: GymOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
+    /**
      * The filter to search for the Gym to update in case it exists.
      */
     where: GymWhereUniqueInput
@@ -4053,6 +4303,10 @@ export namespace Prisma {
      */
     omit?: GymOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
+    /**
      * Filter which Gym to delete.
      */
     where: GymWhereUniqueInput
@@ -4073,6 +4327,30 @@ export namespace Prisma {
   }
 
   /**
+   * Gym.checkIn
+   */
+  export type Gym$checkInArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CheckIn
+     */
+    select?: CheckInSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CheckIn
+     */
+    omit?: CheckInOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CheckInInclude<ExtArgs> | null
+    where?: CheckInWhereInput
+    orderBy?: CheckInOrderByWithRelationInput | CheckInOrderByWithRelationInput[]
+    cursor?: CheckInWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CheckInScalarFieldEnum | CheckInScalarFieldEnum[]
+  }
+
+  /**
    * Gym without action
    */
   export type GymDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4084,6 +4362,10 @@ export namespace Prisma {
      * Omit specific fields from the Gym
      */
     omit?: GymOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GymInclude<ExtArgs> | null
   }
 
 
@@ -4105,7 +4387,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     email: 'email',
-    password_hashs: 'password_hashs',
+    password_hash: 'password_hash',
     createdAt: 'createdAt'
   };
 
@@ -4114,9 +4396,10 @@ export namespace Prisma {
 
   export const CheckInScalarFieldEnum: {
     id: 'id',
-    userId: 'userId',
     is_validated: 'is_validated',
-    createdAt: 'createdAt'
+    created_at: 'created_at',
+    user_id: 'user_id',
+    gym_id: 'gym_id'
   };
 
   export type CheckInScalarFieldEnum = (typeof CheckInScalarFieldEnum)[keyof typeof CheckInScalarFieldEnum]
@@ -4128,8 +4411,7 @@ export namespace Prisma {
     description: 'description',
     phone: 'phone',
     latitude: 'latitude',
-    longitude: 'longitude',
-    createdAt: 'createdAt'
+    longitude: 'longitude'
   };
 
   export type GymScalarFieldEnum = (typeof GymScalarFieldEnum)[keyof typeof GymScalarFieldEnum]
@@ -4230,16 +4512,18 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
-    password_hashs?: StringFilter<"User"> | string
+    password_hash?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    checkIns?: CheckInListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    password_hashs?: SortOrder
+    password_hash?: SortOrder
     createdAt?: SortOrder
+    checkIns?: CheckInOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4249,15 +4533,16 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
-    password_hashs?: StringFilter<"User"> | string
+    password_hash?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    checkIns?: CheckInListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    password_hashs?: SortOrder
+    password_hash?: SortOrder
     createdAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -4271,7 +4556,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
-    password_hashs?: StringWithAggregatesFilter<"User"> | string
+    password_hash?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
@@ -4280,16 +4565,22 @@ export namespace Prisma {
     OR?: CheckInWhereInput[]
     NOT?: CheckInWhereInput | CheckInWhereInput[]
     id?: StringFilter<"CheckIn"> | string
-    userId?: StringFilter<"CheckIn"> | string
     is_validated?: DateTimeNullableFilter<"CheckIn"> | Date | string | null
-    createdAt?: DateTimeFilter<"CheckIn"> | Date | string
+    created_at?: StringFilter<"CheckIn"> | string
+    user_id?: StringFilter<"CheckIn"> | string
+    gym_id?: StringFilter<"CheckIn"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    gym?: XOR<GymScalarRelationFilter, GymWhereInput>
   }
 
   export type CheckInOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
     is_validated?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    user_id?: SortOrder
+    gym_id?: SortOrder
+    user?: UserOrderByWithRelationInput
+    gym?: GymOrderByWithRelationInput
   }
 
   export type CheckInWhereUniqueInput = Prisma.AtLeast<{
@@ -4297,16 +4588,20 @@ export namespace Prisma {
     AND?: CheckInWhereInput | CheckInWhereInput[]
     OR?: CheckInWhereInput[]
     NOT?: CheckInWhereInput | CheckInWhereInput[]
-    userId?: StringFilter<"CheckIn"> | string
     is_validated?: DateTimeNullableFilter<"CheckIn"> | Date | string | null
-    createdAt?: DateTimeFilter<"CheckIn"> | Date | string
+    created_at?: StringFilter<"CheckIn"> | string
+    user_id?: StringFilter<"CheckIn"> | string
+    gym_id?: StringFilter<"CheckIn"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    gym?: XOR<GymScalarRelationFilter, GymWhereInput>
   }, "id">
 
   export type CheckInOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrder
     is_validated?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    user_id?: SortOrder
+    gym_id?: SortOrder
     _count?: CheckInCountOrderByAggregateInput
     _max?: CheckInMaxOrderByAggregateInput
     _min?: CheckInMinOrderByAggregateInput
@@ -4317,9 +4612,10 @@ export namespace Prisma {
     OR?: CheckInScalarWhereWithAggregatesInput[]
     NOT?: CheckInScalarWhereWithAggregatesInput | CheckInScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"CheckIn"> | string
-    userId?: StringWithAggregatesFilter<"CheckIn"> | string
     is_validated?: DateTimeNullableWithAggregatesFilter<"CheckIn"> | Date | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"CheckIn"> | Date | string
+    created_at?: StringWithAggregatesFilter<"CheckIn"> | string
+    user_id?: StringWithAggregatesFilter<"CheckIn"> | string
+    gym_id?: StringWithAggregatesFilter<"CheckIn"> | string
   }
 
   export type GymWhereInput = {
@@ -4332,7 +4628,7 @@ export namespace Prisma {
     phone?: StringNullableFilter<"Gym"> | string | null
     latitude?: DecimalFilter<"Gym"> | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFilter<"Gym"> | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFilter<"Gym"> | Date | string
+    checkIn?: CheckInListRelationFilter
   }
 
   export type GymOrderByWithRelationInput = {
@@ -4342,7 +4638,7 @@ export namespace Prisma {
     phone?: SortOrderInput | SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    createdAt?: SortOrder
+    checkIn?: CheckInOrderByRelationAggregateInput
   }
 
   export type GymWhereUniqueInput = Prisma.AtLeast<{
@@ -4355,7 +4651,7 @@ export namespace Prisma {
     phone?: StringNullableFilter<"Gym"> | string | null
     latitude?: DecimalFilter<"Gym"> | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFilter<"Gym"> | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFilter<"Gym"> | Date | string
+    checkIn?: CheckInListRelationFilter
   }, "id">
 
   export type GymOrderByWithAggregationInput = {
@@ -4365,7 +4661,6 @@ export namespace Prisma {
     phone?: SortOrderInput | SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    createdAt?: SortOrder
     _count?: GymCountOrderByAggregateInput
     _avg?: GymAvgOrderByAggregateInput
     _max?: GymMaxOrderByAggregateInput
@@ -4383,46 +4678,49 @@ export namespace Prisma {
     phone?: StringNullableWithAggregatesFilter<"Gym"> | string | null
     latitude?: DecimalWithAggregatesFilter<"Gym"> | Decimal | DecimalJsLike | number | string
     longitude?: DecimalWithAggregatesFilter<"Gym"> | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeWithAggregatesFilter<"Gym"> | Date | string
   }
 
   export type UserCreateInput = {
     id?: string
     name: string
     email: string
-    password_hashs: string
+    password_hash: string
     createdAt?: Date | string
+    checkIns?: CheckInCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
     name: string
     email: string
-    password_hashs: string
+    password_hash: string
     createdAt?: Date | string
+    checkIns?: CheckInUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hashs?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkIns?: CheckInUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hashs?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkIns?: CheckInUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
     name: string
     email: string
-    password_hashs: string
+    password_hash: string
     createdAt?: Date | string
   }
 
@@ -4430,7 +4728,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hashs?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -4438,57 +4736,62 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    password_hashs?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CheckInCreateInput = {
     id?: string
-    userId: string
     is_validated?: Date | string | null
-    createdAt?: Date | string
+    created_at: string
+    user: UserCreateNestedOneWithoutCheckInsInput
+    gym: GymCreateNestedOneWithoutCheckInInput
   }
 
   export type CheckInUncheckedCreateInput = {
     id?: string
-    userId: string
     is_validated?: Date | string | null
-    createdAt?: Date | string
+    created_at: string
+    user_id: string
+    gym_id: string
   }
 
   export type CheckInUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutCheckInsNestedInput
+    gym?: GymUpdateOneRequiredWithoutCheckInNestedInput
   }
 
   export type CheckInUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    gym_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type CheckInCreateManyInput = {
     id?: string
-    userId: string
     is_validated?: Date | string | null
-    createdAt?: Date | string
+    created_at: string
+    user_id: string
+    gym_id: string
   }
 
   export type CheckInUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: StringFieldUpdateOperationsInput | string
   }
 
   export type CheckInUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+    gym_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type GymCreateInput = {
@@ -4498,7 +4801,7 @@ export namespace Prisma {
     phone?: string | null
     latitude: Decimal | DecimalJsLike | number | string
     longitude: Decimal | DecimalJsLike | number | string
-    createdAt?: Date | string
+    checkIn?: CheckInCreateNestedManyWithoutGymInput
   }
 
   export type GymUncheckedCreateInput = {
@@ -4508,7 +4811,7 @@ export namespace Prisma {
     phone?: string | null
     latitude: Decimal | DecimalJsLike | number | string
     longitude: Decimal | DecimalJsLike | number | string
-    createdAt?: Date | string
+    checkIn?: CheckInUncheckedCreateNestedManyWithoutGymInput
   }
 
   export type GymUpdateInput = {
@@ -4518,7 +4821,7 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkIn?: CheckInUpdateManyWithoutGymNestedInput
   }
 
   export type GymUncheckedUpdateInput = {
@@ -4528,7 +4831,7 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checkIn?: CheckInUncheckedUpdateManyWithoutGymNestedInput
   }
 
   export type GymCreateManyInput = {
@@ -4538,7 +4841,6 @@ export namespace Prisma {
     phone?: string | null
     latitude: Decimal | DecimalJsLike | number | string
     longitude: Decimal | DecimalJsLike | number | string
-    createdAt?: Date | string
   }
 
   export type GymUpdateManyMutationInput = {
@@ -4548,7 +4850,6 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GymUncheckedUpdateManyInput = {
@@ -4558,7 +4859,6 @@ export namespace Prisma {
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4587,11 +4887,21 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type CheckInListRelationFilter = {
+    every?: CheckInWhereInput
+    some?: CheckInWhereInput
+    none?: CheckInWhereInput
+  }
+
+  export type CheckInOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    password_hashs?: SortOrder
+    password_hash?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -4599,7 +4909,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    password_hashs?: SortOrder
+    password_hash?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -4607,7 +4917,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
-    password_hashs?: SortOrder
+    password_hash?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -4654,6 +4964,16 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type GymScalarRelationFilter = {
+    is?: GymWhereInput
+    isNot?: GymWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -4661,23 +4981,26 @@ export namespace Prisma {
 
   export type CheckInCountOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
     is_validated?: SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    user_id?: SortOrder
+    gym_id?: SortOrder
   }
 
   export type CheckInMaxOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
     is_validated?: SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    user_id?: SortOrder
+    gym_id?: SortOrder
   }
 
   export type CheckInMinOrderByAggregateInput = {
     id?: SortOrder
-    userId?: SortOrder
     is_validated?: SortOrder
-    createdAt?: SortOrder
+    created_at?: SortOrder
+    user_id?: SortOrder
+    gym_id?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -4727,7 +5050,6 @@ export namespace Prisma {
     phone?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    createdAt?: SortOrder
   }
 
   export type GymAvgOrderByAggregateInput = {
@@ -4742,7 +5064,6 @@ export namespace Prisma {
     phone?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    createdAt?: SortOrder
   }
 
   export type GymMinOrderByAggregateInput = {
@@ -4752,7 +5073,6 @@ export namespace Prisma {
     phone?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
-    createdAt?: SortOrder
   }
 
   export type GymSumOrderByAggregateInput = {
@@ -4794,6 +5114,20 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type CheckInCreateNestedManyWithoutUserInput = {
+    create?: XOR<CheckInCreateWithoutUserInput, CheckInUncheckedCreateWithoutUserInput> | CheckInCreateWithoutUserInput[] | CheckInUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CheckInCreateOrConnectWithoutUserInput | CheckInCreateOrConnectWithoutUserInput[]
+    createMany?: CheckInCreateManyUserInputEnvelope
+    connect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+  }
+
+  export type CheckInUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CheckInCreateWithoutUserInput, CheckInUncheckedCreateWithoutUserInput> | CheckInCreateWithoutUserInput[] | CheckInUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CheckInCreateOrConnectWithoutUserInput | CheckInCreateOrConnectWithoutUserInput[]
+    createMany?: CheckInCreateManyUserInputEnvelope
+    connect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -4802,8 +5136,78 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type CheckInUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CheckInCreateWithoutUserInput, CheckInUncheckedCreateWithoutUserInput> | CheckInCreateWithoutUserInput[] | CheckInUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CheckInCreateOrConnectWithoutUserInput | CheckInCreateOrConnectWithoutUserInput[]
+    upsert?: CheckInUpsertWithWhereUniqueWithoutUserInput | CheckInUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CheckInCreateManyUserInputEnvelope
+    set?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    disconnect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    delete?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    connect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    update?: CheckInUpdateWithWhereUniqueWithoutUserInput | CheckInUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CheckInUpdateManyWithWhereWithoutUserInput | CheckInUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CheckInScalarWhereInput | CheckInScalarWhereInput[]
+  }
+
+  export type CheckInUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CheckInCreateWithoutUserInput, CheckInUncheckedCreateWithoutUserInput> | CheckInCreateWithoutUserInput[] | CheckInUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CheckInCreateOrConnectWithoutUserInput | CheckInCreateOrConnectWithoutUserInput[]
+    upsert?: CheckInUpsertWithWhereUniqueWithoutUserInput | CheckInUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CheckInCreateManyUserInputEnvelope
+    set?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    disconnect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    delete?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    connect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    update?: CheckInUpdateWithWhereUniqueWithoutUserInput | CheckInUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CheckInUpdateManyWithWhereWithoutUserInput | CheckInUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CheckInScalarWhereInput | CheckInScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutCheckInsInput = {
+    create?: XOR<UserCreateWithoutCheckInsInput, UserUncheckedCreateWithoutCheckInsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCheckInsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type GymCreateNestedOneWithoutCheckInInput = {
+    create?: XOR<GymCreateWithoutCheckInInput, GymUncheckedCreateWithoutCheckInInput>
+    connectOrCreate?: GymCreateOrConnectWithoutCheckInInput
+    connect?: GymWhereUniqueInput
+  }
+
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type UserUpdateOneRequiredWithoutCheckInsNestedInput = {
+    create?: XOR<UserCreateWithoutCheckInsInput, UserUncheckedCreateWithoutCheckInsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCheckInsInput
+    upsert?: UserUpsertWithoutCheckInsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCheckInsInput, UserUpdateWithoutCheckInsInput>, UserUncheckedUpdateWithoutCheckInsInput>
+  }
+
+  export type GymUpdateOneRequiredWithoutCheckInNestedInput = {
+    create?: XOR<GymCreateWithoutCheckInInput, GymUncheckedCreateWithoutCheckInInput>
+    connectOrCreate?: GymCreateOrConnectWithoutCheckInInput
+    upsert?: GymUpsertWithoutCheckInInput
+    connect?: GymWhereUniqueInput
+    update?: XOR<XOR<GymUpdateToOneWithWhereWithoutCheckInInput, GymUpdateWithoutCheckInInput>, GymUncheckedUpdateWithoutCheckInInput>
+  }
+
+  export type CheckInCreateNestedManyWithoutGymInput = {
+    create?: XOR<CheckInCreateWithoutGymInput, CheckInUncheckedCreateWithoutGymInput> | CheckInCreateWithoutGymInput[] | CheckInUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: CheckInCreateOrConnectWithoutGymInput | CheckInCreateOrConnectWithoutGymInput[]
+    createMany?: CheckInCreateManyGymInputEnvelope
+    connect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+  }
+
+  export type CheckInUncheckedCreateNestedManyWithoutGymInput = {
+    create?: XOR<CheckInCreateWithoutGymInput, CheckInUncheckedCreateWithoutGymInput> | CheckInCreateWithoutGymInput[] | CheckInUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: CheckInCreateOrConnectWithoutGymInput | CheckInCreateOrConnectWithoutGymInput[]
+    createMany?: CheckInCreateManyGymInputEnvelope
+    connect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -4816,6 +5220,34 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type CheckInUpdateManyWithoutGymNestedInput = {
+    create?: XOR<CheckInCreateWithoutGymInput, CheckInUncheckedCreateWithoutGymInput> | CheckInCreateWithoutGymInput[] | CheckInUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: CheckInCreateOrConnectWithoutGymInput | CheckInCreateOrConnectWithoutGymInput[]
+    upsert?: CheckInUpsertWithWhereUniqueWithoutGymInput | CheckInUpsertWithWhereUniqueWithoutGymInput[]
+    createMany?: CheckInCreateManyGymInputEnvelope
+    set?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    disconnect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    delete?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    connect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    update?: CheckInUpdateWithWhereUniqueWithoutGymInput | CheckInUpdateWithWhereUniqueWithoutGymInput[]
+    updateMany?: CheckInUpdateManyWithWhereWithoutGymInput | CheckInUpdateManyWithWhereWithoutGymInput[]
+    deleteMany?: CheckInScalarWhereInput | CheckInScalarWhereInput[]
+  }
+
+  export type CheckInUncheckedUpdateManyWithoutGymNestedInput = {
+    create?: XOR<CheckInCreateWithoutGymInput, CheckInUncheckedCreateWithoutGymInput> | CheckInCreateWithoutGymInput[] | CheckInUncheckedCreateWithoutGymInput[]
+    connectOrCreate?: CheckInCreateOrConnectWithoutGymInput | CheckInCreateOrConnectWithoutGymInput[]
+    upsert?: CheckInUpsertWithWhereUniqueWithoutGymInput | CheckInUpsertWithWhereUniqueWithoutGymInput[]
+    createMany?: CheckInCreateManyGymInputEnvelope
+    set?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    disconnect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    delete?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    connect?: CheckInWhereUniqueInput | CheckInWhereUniqueInput[]
+    update?: CheckInUpdateWithWhereUniqueWithoutGymInput | CheckInUpdateWithWhereUniqueWithoutGymInput[]
+    updateMany?: CheckInUpdateManyWithWhereWithoutGymInput | CheckInUpdateManyWithWhereWithoutGymInput[]
+    deleteMany?: CheckInScalarWhereInput | CheckInScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4977,6 +5409,253 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type CheckInCreateWithoutUserInput = {
+    id?: string
+    is_validated?: Date | string | null
+    created_at: string
+    gym: GymCreateNestedOneWithoutCheckInInput
+  }
+
+  export type CheckInUncheckedCreateWithoutUserInput = {
+    id?: string
+    is_validated?: Date | string | null
+    created_at: string
+    gym_id: string
+  }
+
+  export type CheckInCreateOrConnectWithoutUserInput = {
+    where: CheckInWhereUniqueInput
+    create: XOR<CheckInCreateWithoutUserInput, CheckInUncheckedCreateWithoutUserInput>
+  }
+
+  export type CheckInCreateManyUserInputEnvelope = {
+    data: CheckInCreateManyUserInput | CheckInCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CheckInUpsertWithWhereUniqueWithoutUserInput = {
+    where: CheckInWhereUniqueInput
+    update: XOR<CheckInUpdateWithoutUserInput, CheckInUncheckedUpdateWithoutUserInput>
+    create: XOR<CheckInCreateWithoutUserInput, CheckInUncheckedCreateWithoutUserInput>
+  }
+
+  export type CheckInUpdateWithWhereUniqueWithoutUserInput = {
+    where: CheckInWhereUniqueInput
+    data: XOR<CheckInUpdateWithoutUserInput, CheckInUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CheckInUpdateManyWithWhereWithoutUserInput = {
+    where: CheckInScalarWhereInput
+    data: XOR<CheckInUpdateManyMutationInput, CheckInUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CheckInScalarWhereInput = {
+    AND?: CheckInScalarWhereInput | CheckInScalarWhereInput[]
+    OR?: CheckInScalarWhereInput[]
+    NOT?: CheckInScalarWhereInput | CheckInScalarWhereInput[]
+    id?: StringFilter<"CheckIn"> | string
+    is_validated?: DateTimeNullableFilter<"CheckIn"> | Date | string | null
+    created_at?: StringFilter<"CheckIn"> | string
+    user_id?: StringFilter<"CheckIn"> | string
+    gym_id?: StringFilter<"CheckIn"> | string
+  }
+
+  export type UserCreateWithoutCheckInsInput = {
+    id?: string
+    name: string
+    email: string
+    password_hash: string
+    createdAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutCheckInsInput = {
+    id?: string
+    name: string
+    email: string
+    password_hash: string
+    createdAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutCheckInsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCheckInsInput, UserUncheckedCreateWithoutCheckInsInput>
+  }
+
+  export type GymCreateWithoutCheckInInput = {
+    id?: string
+    title: string
+    description?: string | null
+    phone?: string | null
+    latitude: Decimal | DecimalJsLike | number | string
+    longitude: Decimal | DecimalJsLike | number | string
+  }
+
+  export type GymUncheckedCreateWithoutCheckInInput = {
+    id?: string
+    title: string
+    description?: string | null
+    phone?: string | null
+    latitude: Decimal | DecimalJsLike | number | string
+    longitude: Decimal | DecimalJsLike | number | string
+  }
+
+  export type GymCreateOrConnectWithoutCheckInInput = {
+    where: GymWhereUniqueInput
+    create: XOR<GymCreateWithoutCheckInInput, GymUncheckedCreateWithoutCheckInInput>
+  }
+
+  export type UserUpsertWithoutCheckInsInput = {
+    update: XOR<UserUpdateWithoutCheckInsInput, UserUncheckedUpdateWithoutCheckInsInput>
+    create: XOR<UserCreateWithoutCheckInsInput, UserUncheckedCreateWithoutCheckInsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCheckInsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCheckInsInput, UserUncheckedUpdateWithoutCheckInsInput>
+  }
+
+  export type UserUpdateWithoutCheckInsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutCheckInsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password_hash?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GymUpsertWithoutCheckInInput = {
+    update: XOR<GymUpdateWithoutCheckInInput, GymUncheckedUpdateWithoutCheckInInput>
+    create: XOR<GymCreateWithoutCheckInInput, GymUncheckedCreateWithoutCheckInInput>
+    where?: GymWhereInput
+  }
+
+  export type GymUpdateToOneWithWhereWithoutCheckInInput = {
+    where?: GymWhereInput
+    data: XOR<GymUpdateWithoutCheckInInput, GymUncheckedUpdateWithoutCheckInInput>
+  }
+
+  export type GymUpdateWithoutCheckInInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type GymUncheckedUpdateWithoutCheckInInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    longitude?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type CheckInCreateWithoutGymInput = {
+    id?: string
+    is_validated?: Date | string | null
+    created_at: string
+    user: UserCreateNestedOneWithoutCheckInsInput
+  }
+
+  export type CheckInUncheckedCreateWithoutGymInput = {
+    id?: string
+    is_validated?: Date | string | null
+    created_at: string
+    user_id: string
+  }
+
+  export type CheckInCreateOrConnectWithoutGymInput = {
+    where: CheckInWhereUniqueInput
+    create: XOR<CheckInCreateWithoutGymInput, CheckInUncheckedCreateWithoutGymInput>
+  }
+
+  export type CheckInCreateManyGymInputEnvelope = {
+    data: CheckInCreateManyGymInput | CheckInCreateManyGymInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CheckInUpsertWithWhereUniqueWithoutGymInput = {
+    where: CheckInWhereUniqueInput
+    update: XOR<CheckInUpdateWithoutGymInput, CheckInUncheckedUpdateWithoutGymInput>
+    create: XOR<CheckInCreateWithoutGymInput, CheckInUncheckedCreateWithoutGymInput>
+  }
+
+  export type CheckInUpdateWithWhereUniqueWithoutGymInput = {
+    where: CheckInWhereUniqueInput
+    data: XOR<CheckInUpdateWithoutGymInput, CheckInUncheckedUpdateWithoutGymInput>
+  }
+
+  export type CheckInUpdateManyWithWhereWithoutGymInput = {
+    where: CheckInScalarWhereInput
+    data: XOR<CheckInUpdateManyMutationInput, CheckInUncheckedUpdateManyWithoutGymInput>
+  }
+
+  export type CheckInCreateManyUserInput = {
+    id?: string
+    is_validated?: Date | string | null
+    created_at: string
+    gym_id: string
+  }
+
+  export type CheckInUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: StringFieldUpdateOperationsInput | string
+    gym?: GymUpdateOneRequiredWithoutCheckInNestedInput
+  }
+
+  export type CheckInUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: StringFieldUpdateOperationsInput | string
+    gym_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CheckInUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: StringFieldUpdateOperationsInput | string
+    gym_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CheckInCreateManyGymInput = {
+    id?: string
+    is_validated?: Date | string | null
+    created_at: string
+    user_id: string
+  }
+
+  export type CheckInUpdateWithoutGymInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutCheckInsNestedInput
+  }
+
+  export type CheckInUncheckedUpdateWithoutGymInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CheckInUncheckedUpdateManyWithoutGymInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    is_validated?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: StringFieldUpdateOperationsInput | string
+    user_id?: StringFieldUpdateOperationsInput | string
   }
 
 

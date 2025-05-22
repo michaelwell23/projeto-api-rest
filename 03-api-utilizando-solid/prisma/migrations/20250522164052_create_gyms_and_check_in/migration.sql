@@ -12,7 +12,7 @@ CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "password_hashs" TEXT NOT NULL,
+    "password_hash" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
@@ -21,9 +21,8 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "check_ins" (
     "id" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
     "is_validated" TIMESTAMP(3),
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TEXT NOT NULL,
 
     CONSTRAINT "check_ins_pkey" PRIMARY KEY ("id")
 );
@@ -36,7 +35,6 @@ CREATE TABLE "gyms" (
     "phone" TEXT,
     "latitude" DECIMAL(65,30) NOT NULL,
     "longitude" DECIMAL(65,30) NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "gyms_pkey" PRIMARY KEY ("id")
 );
