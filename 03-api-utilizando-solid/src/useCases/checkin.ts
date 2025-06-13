@@ -1,6 +1,5 @@
 import { CheckInsRepository } from './../repositories/check-ins-repository';
 import { CheckIn } from '@prisma/client';
-import { ResourceNotFoundError } from './errors/resource-not-found-error';
 
 interface CheckInUseCaseRequest {
   userId: string;
@@ -18,10 +17,19 @@ export class CheckInUseCase {
     userId,
     gymId,
   }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
+    const CheckInOnSameDate = await this.checkInsRepository.findByIdOnDate(
+      userId,
+      new Date()
+    );
+
+    if (CheckInOnSameDate) {
+      throw new Error();
+    }
+
     const checkIn = await this.checkInsRepository.create({
       gym_id: gymId,
       user_id: userId,
-      created_at: String(Date.now()),
+      created_at: new Date(),
     });
 
     return {
