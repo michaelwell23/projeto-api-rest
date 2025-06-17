@@ -15,13 +15,13 @@ describe('Check-in Use Case', () => {
     gymsRepositoryInMemory = new GymsRepositoryInMemory();
     sut = new CheckInUseCase(checkInsRepository, gymsRepositoryInMemory);
 
-    await gymsRepositoryInMemory.items.push({
+    await gymsRepositoryInMemory.create({
       id: 'gym-01',
       title: 'Gym-01',
       description: 'Description of Gym 1',
       phone: '123456789',
-      latitude: new Decimal(-23.5505),
-      longitude: new Decimal(-46.6333),
+      latitude: -23.5505,
+      longitude: -46.6333,
     });
 
     vi.useRealTimers();
