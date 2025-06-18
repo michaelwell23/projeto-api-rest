@@ -1,16 +1,17 @@
-import { GymsRepository } from './../repositories/gyms-repository';
-import { CheckInsRepository } from './../repositories/check-ins-repository';
-import { CheckIn } from '@prisma/client';
-import { ResourceNotFoundError } from './errors/resource-not-found-error';
-import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates';
 import { MaxDistanceError } from './errors/max-distance-error';
-import { MaxNumberOfCheckInsError } from './errors/max-number-of-check-ins.error';
+
+import { CheckInsRepository } from '@/repositories/check-ins-repository';
+import { GymsRepository } from '@/repositories/gyms-repository';
+import { MaxNumberOfCheckInsError } from '@/useCases/errors/max-number-of-check-ins.error';
+import { ResourceNotFoundError } from '@/useCases/errors/resource-not-found-error';
+import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates';
+import { CheckIn } from '@prisma/client';
 
 interface CheckInUseCaseRequest {
   userId: string;
   gymId: string;
-  userLatitude?: number;
-  userLongitude?: number;
+  userLatitude: number;
+  userLongitude: number;
 }
 
 interface CheckInUseCaseResponse {
@@ -61,7 +62,6 @@ export class CheckInUseCase {
     const checkIn = await this.checkInsRepository.create({
       gym_id: gymId,
       user_id: userId,
-      created_at: new Date(),
     });
 
     return {
