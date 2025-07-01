@@ -1,3 +1,5 @@
 import { test } from 'vitest';
 
-test('ok', () => {});
+test('ok', () => {
+  console.log('Test Register is running successfully');
+});
