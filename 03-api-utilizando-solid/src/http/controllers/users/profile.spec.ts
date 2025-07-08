@@ -3,6 +3,8 @@ import request from 'supertest';
 
 import { app } from '@/app';
 
+import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user';
+
 describe('Profile (e2e)', () => {
   beforeAll(async () => {
     await app.ready();
@@ -13,18 +15,7 @@ describe('Profile (e2e)', () => {
   });
 
   it('should be able to get user profile', async () => {
-    await request(app.server).post('/users').send({
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-      password: 'password123',
-    });
-
-    const authResponse = await request(app.server).post('/sessions').send({
-      email: 'johndoe@example.com',
-      password: 'password123',
-    });
-
-    const { token } = authResponse.body;
+    const { token } = await createAndAuthenticateUser(app);
 
     const profileResponse = await request(app.server)
       .get('/me')
