@@ -1,7 +1,7 @@
 import { verifyJwt } from '@/http/middlewares/verify-jwt';
 import { FastifyInstance } from 'fastify';
 import { create } from './check-ins-create';
-import { metrics } from './check-ins.metrics';
+import { metrics } from './check-ins-metrics';
 import { history } from './check-ins-history';
 import { validateCheckIn } from './check-ins-validate';
 
