@@ -33,19 +33,17 @@ describe('Search Gyms (e2e)', () => {
         title: 'TypeScript Gym',
         description: 'Some description.',
         phone: '1199999999',
-        latitude: -27.2092052,
-        longitude: -49.6401091,
+        latitude: -37.2092052,
+        longitude: -50.6401091,
       });
 
     const response = await request(app.server)
       .get('/gyms/search')
       .query({
-        q: 'JavaScript',
+        query: 'JavaScript',
       })
       .set('Authorization', `Bearer ${token}`)
       .send();
-
-    console.log(response.statusCode, response.body.gyms);
 
     expect(response.statusCode).toEqual(200);
     expect(response.body.gyms).toHaveLength(1);

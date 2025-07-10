@@ -15,7 +15,7 @@ app.register(fastifyJwt, {
 });
 
 app.register(usersRoutes);
-app.register(gymsRoutes);
+app.register(gymsRoutes, { prefix: '/gyms' });
 app.register(checkInsRoutes);
 
 app.setErrorHandler((error, _, reply) => {

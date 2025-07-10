@@ -30,7 +30,8 @@ describe('Create Check-in (e2e)', () => {
       .send({
         latitude: -27.2092052,
         longitude: -49.6401091,
-      });
+      })
+      .send();
 
     expect(response.statusCode).toEqual(201);
   });
