@@ -7,6 +7,7 @@ const envSchema = z.object({
     .default('development'),
   JWT_SECRET: z.string(),
   PORT: z.coerce.number().default(3000),
+  COOKIE_SECRET: z.string(),
 });
 
 const _env = envSchema.safeParse(process.env);
