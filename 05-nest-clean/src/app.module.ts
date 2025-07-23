@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import { PrismaService } from './prisma/prisma.service';
+import { CreateAccountController } from './controllers/create-account.controller';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService], //providers é tudo aquilo que não recebe requisições HTTP diretamente. É tudo que é injetável, como serviços, repositórios, etc.
+  imports: [CreateAccountController],
+  providers: [PrismaService],
 })
 export class AppModule {}
