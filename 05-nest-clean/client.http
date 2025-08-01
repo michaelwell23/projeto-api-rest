@@ -28,7 +28,15 @@ Content-Type: application/json
 POST {{hostname}}/questions
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
+
 {
   "title": "What is NestJS?",
   "content": "NestJS is a progressive Node.js framework for building efficient, reliable and scalable server-side applications."
 }
+
+###
+
+# @name fetch_recent_questions
+GET {{hostname}}/questions/recent
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
