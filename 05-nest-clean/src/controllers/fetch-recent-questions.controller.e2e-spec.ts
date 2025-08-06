@@ -1,4 +1,3 @@
-import { access } from 'fs';
 import { AppModule } from '@/app.module';
 import { PrismaService } from '@/prisma/prisma.service';
 import { INestApplication } from '@nestjs/common';
@@ -7,7 +6,7 @@ import { Test } from '@nestjs/testing';
 import { hash } from 'bcryptjs';
 import request from 'supertest';
 
-describe('Create Question e2e', () => {
+describe('Fetch recent Question e2e', () => {
   let app: INestApplication;
   let prismaService: PrismaService;
   let jwtService: JwtService;
@@ -25,7 +24,7 @@ describe('Create Question e2e', () => {
     await app.init();
   });
 
-  test('[POST] /questions', async () => {
+  test('[GET] /questions', async () => {
     const user = await prismaService.user.create({
       data: {
         name: 'marie Currie',
@@ -38,22 +37,41 @@ describe('Create Question e2e', () => {
       sub: user.id,
     });
 
+    await prismaService.question.createMany({
+      data: [
+        {
+          title: 'Question 1',
+          slug: 'question-1',
+          content: 'Content of question 1',
+          authorId: user.id,
+        },
+        {
+          title: 'Question 2',
+          slug: 'question-2',
+          content: 'Content of question 2',
+          authorId: user.id,
+        },
+        {
+          title: 'Question 3',
+          slug: 'question-3',
+          content: 'Content of question 3',
+          authorId: user.id,
+        },
+      ],
+    });
+
     const response = await request(app.getHttpServer())
       .post('/questions')
       .set('Authorization', `Bearer ${accessToken}`)
-      .send({
-        title: 'New Question',
-        content: 'This is a test question',
-      });
+      .send();
 
-    expect(response.status).toBe(201);
-
-    const questionOnDatabase = await prismaService.question.findFirst({
-      where: {
-        title: 'New Question',
-      },
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual({
+      questions: [
+        expect.objectContaining({ tile: 'Question 1' }),
+        expect.objectContaining({ tile: 'Question 2' }),
+        expect.objectContaining({ tile: 'Question 3' }),
+      ],
     });
-
-    expect(questionOnDatabase).toBeTruthy();
   });
 });
