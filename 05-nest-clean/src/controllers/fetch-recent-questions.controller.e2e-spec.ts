@@ -51,26 +51,19 @@ describe('Fetch recent Question e2e', () => {
           content: 'Content of question 2',
           authorId: user.id,
         },
-        {
-          title: 'Question 3',
-          slug: 'question-3',
-          content: 'Content of question 3',
-          authorId: user.id,
-        },
       ],
     });
 
     const response = await request(app.getHttpServer())
-      .post('/questions')
+      .get('/questions/recent')
       .set('Authorization', `Bearer ${accessToken}`)
       .send();
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual({
       questions: [
-        expect.objectContaining({ tile: 'Question 1' }),
-        expect.objectContaining({ tile: 'Question 2' }),
-        expect.objectContaining({ tile: 'Question 3' }),
+        expect.objectContaining({ title: 'Question 1' }),
+        expect.objectContaining({ title: 'Question 2' }),
       ],
     });
   });
