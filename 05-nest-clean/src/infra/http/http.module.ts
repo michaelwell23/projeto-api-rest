@@ -13,6 +13,8 @@ import { PrismaQuestionAttachmentsRepository } from '../database/prisma/reposito
 import { PrismaAnswerAttachmentsRepository } from '../database/prisma/repositories/prisma-answer-attachments-repository';
 import { PrismaAnswerCommentsRepository } from '../database/prisma/repositories/prisma-answer-comments-repository';
 
+import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/create-question';
+
 @Module({
   imports: [DatabaseModule],
   controllers: [
@@ -30,5 +32,6 @@ import { PrismaAnswerCommentsRepository } from '../database/prisma/repositories/
     PrismaAnswerCommentsRepository,
     PrismaAnswerAttachmentsRepository,
   ],
+  providers: [CreateQuestionUseCase],
 })
 export class HttpModule {}
