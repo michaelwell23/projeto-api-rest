@@ -1,10 +1,16 @@
 import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/register-student';
 import { z } from 'zod';
-import { UsePipes } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  UnauthorizedException,
+  UsePipes,
+} from '@nestjs/common';
 
 import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validate-pipe';
+import { StudentAlreadyExistsError } from '@/domain/forum/application/use-cases/errors/student-already-exists-error';
 
 const createAccountSchema = z.object({
   name: z.string().min(2).max(100),
@@ -30,7 +36,14 @@ export class CreateAccountController {
     });
 
     if (results.isLeft()) {
-      throw new Error();
+      const error = results.value;
+
+      switch (error.constructor) {
+        case StudentAlreadyExistsError:
+          throw new ConflictException(error.message);
+        default:
+          throw new BadRequestException(error.message);
+      }
     }
   }
 }
