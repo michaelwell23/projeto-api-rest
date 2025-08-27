@@ -11,6 +11,7 @@ import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validate-pipe';
 import { StudentAlreadyExistsError } from '@/domain/forum/application/use-cases/errors/student-already-exists-error';
+import { Public } from '@/infra/auth/public';
 
 const createAccountSchema = z.object({
   name: z.string().min(2).max(100),
@@ -20,6 +21,7 @@ const createAccountSchema = z.object({
 
 type CreateAccountBodySchema = z.infer<typeof createAccountSchema>;
 @Controller('/accounts')
+@Public()
 export class CreateAccountController {
   constructor(private readonly registerStudent: RegisterStudentUseCase) {}
 
