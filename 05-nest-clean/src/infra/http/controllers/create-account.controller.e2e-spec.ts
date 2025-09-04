@@ -1,5 +1,5 @@
 import { AppModule } from '@/infra/app.module';
-import { PrismaService } from '@/infra/prisma/prisma.service';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
@@ -16,7 +16,6 @@ describe('Create account e2e', () => {
     app = moudule.createNestApplication();
 
     prismaService = app.get(PrismaService);
-    await prismaService.$connect();
 
     await app.init();
   });
