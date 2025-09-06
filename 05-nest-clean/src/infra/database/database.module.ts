@@ -29,6 +29,10 @@ import { AnswersRepository } from '@/domain/forum/application/repositories/answe
       useClass: PrismaQuestionAttachmentsRepository,
     },
     {
+      provide: AnswersRepository,
+      useClass: PrismaAnswersResporitory,
+    },
+    {
       provide: AnswerAttachmentsRepository,
       useClass: PrismaAnswersResporitory,
     },
