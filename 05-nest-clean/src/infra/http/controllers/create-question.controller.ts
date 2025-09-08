@@ -1,9 +1,8 @@
 import { z } from 'zod';
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, BadRequestException } from '@nestjs/common';
 
 import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/create-question';
 import { CurrentUser } from '@/infra/auth/current-user-decorator';
-import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard';
 import { UserPayload } from '@/infra/auth/jwt.strategy';
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validate-pipe';
 
