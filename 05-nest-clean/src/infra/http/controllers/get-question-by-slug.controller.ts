@@ -14,7 +14,7 @@ import { GetQuestionBySlugUseCase } from './../../../domain/forum/application/us
 export class GetQuestionBySlugController {
   constructor(private getQuestionBySlug: GetQuestionBySlugUseCase) {}
 
-  @Get('/recent')
+  @Get()
   async handle(@Param('slug') slug: string) {
     const result = await this.getQuestionBySlug.execute({
       slug,
