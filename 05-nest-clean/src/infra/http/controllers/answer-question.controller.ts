@@ -1,21 +1,28 @@
-import { z } from 'zod';
-import { Body, Controller, Post, Param } from '@nestjs/common';
-
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { CurrentUser } from '@/infra/auth/current-user-decorator';
 import { UserPayload } from '@/infra/auth/jwt.strategy';
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validate-pipe';
+import { z } from 'zod';
 import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question';
 
 const answerQuestionBodySchema = z.object({
   content: z.string(),
+  attachments: z.array(z.string().uuid()),
 });
 
 const bodyValidationPipe = new ZodValidationPipe(answerQuestionBodySchema);
+
 type AnswerQuestionBodySchema = z.infer<typeof answerQuestionBodySchema>;
 
 @Controller('/questions/:questionId/answers')
 export class AnswerQuestionController {
-  constructor(private answerQuestionUseCase: AnswerQuestionUseCase) {}
+  constructor(private answerQuestion: AnswerQuestionUseCase) {}
 
   @Post()
   async handle(
@@ -23,14 +30,18 @@ export class AnswerQuestionController {
     @CurrentUser() user: UserPayload,
     @Param('questionId') questionId: string
   ) {
-    const { content } = body;
+    const { content, attachments } = body;
     const userId = user.sub;
 
-    await this.answerQuestionUseCase.execute({
+    const result = await this.answerQuestion.execute({
       content,
       questionId,
       authorId: userId,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
     });
+
+    if (result.isLeft()) {
+      throw new BadRequestException();
+    }
   }
 }

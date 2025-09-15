@@ -29,30 +29,50 @@ import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answ
 
 import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete-answer';
 import { DeleteAnswerController } from './controllers/delete-answer.controller';
+import { EditAnswerController } from './controllers/edit-answer.controller';
+import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-cases/choose-question-best-answer';
+import { CommentOnAnswerUseCase } from '@/domain/forum/application/use-cases/comment-on-answer';
+import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer';
+import { FetchQuestionAnswersUseCase } from '@/domain/forum/application/use-cases/fetch-question-answers';
+import { CommentOnQuestionUseCase } from '@/domain/forum/application/use-cases/comment-on-question';
+import { DeleteQuestionCommentUseCase } from '@/domain/forum/application/use-cases/delete-question-comment';
+import { DeleteAnswerCommentUseCase } from '@/domain/forum/application/use-cases/delete-answer-comment';
+import { FetchAnswerCommentsUseCase } from '@/domain/forum/application/use-cases/fetch-answer-comments';
+import { ReadNotificationUseCase } from '@/domain/notification/application/use-cases/read-notification';
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
   controllers: [
-    CreateQuestionController,
+    CreateAccountController,
     AuthenticateController,
+    CreateQuestionController,
     FetchRecentQuestionsController,
     GetQuestionBySlugController,
-    CreateAccountController,
     EditQuestionController,
-    DeleteAnswerController,
     DeleteQuestionController,
     AnswerQuestionController,
+    EditAnswerController,
+    DeleteAnswerController,
   ],
   providers: [
     CreateQuestionUseCase,
-    AuthenticateStudentUseCase,
     FetchRecentQuestionsUseCase,
-    GetQuestionBySlugUseCase,
     RegisterStudentUseCase,
+    AuthenticateStudentUseCase,
+    GetQuestionBySlugUseCase,
     EditQuestionUseCase,
     DeleteQuestionUseCase,
-    DeleteAnswerUseCase,
     AnswerQuestionUseCase,
+    EditAnswerUseCase,
+    DeleteAnswerUseCase,
+    FetchQuestionAnswersUseCase,
+    ChooseQuestionBestAnswerUseCase,
+    CommentOnQuestionUseCase,
+    DeleteQuestionCommentUseCase,
+    CommentOnAnswerUseCase,
+    DeleteAnswerCommentUseCase,
+    FetchAnswerCommentsUseCase,
+    ReadNotificationUseCase,
   ],
 })
 export class HttpModule {}

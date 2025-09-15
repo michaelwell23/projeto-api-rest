@@ -40,10 +40,6 @@ import { AnswersRepository } from '@/domain/forum/application/repositories/answe
       provide: AnswerCommentsRepository,
       useClass: PrismaAnswerCommentsRepository,
     },
-    {
-      provide: AnswerAttachmentsRepository,
-      useClass: PrismaAnswerAttachmentsRepository,
-    },
   ],
   exports: [
     PrismaService,
@@ -52,8 +48,8 @@ import { AnswersRepository } from '@/domain/forum/application/repositories/answe
     QuestionCommentsRepository,
     QuestionAttachmentsRepository,
     AnswersRepository,
-    AnswerCommentsRepository,
     AnswerAttachmentsRepository,
+    AnswerCommentsRepository,
   ],
 })
 export class DatabaseModule {}
