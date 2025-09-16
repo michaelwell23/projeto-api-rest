@@ -34,7 +34,7 @@ import { AnswersRepository } from '@/domain/forum/application/repositories/answe
     },
     {
       provide: AnswerAttachmentsRepository,
-      useClass: PrismaAnswersResporitory,
+      useClass: PrismaAnswerAttachmentsRepository,
     },
     {
       provide: AnswerCommentsRepository,

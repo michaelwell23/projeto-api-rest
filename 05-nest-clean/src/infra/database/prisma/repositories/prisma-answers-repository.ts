@@ -4,10 +4,15 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { PrismaAnswerMapper } from '../mappers/prisma-answer-mapper';
 import { PaginationParams } from '@/core/repositories/pagination-params';
+import { AnswerAttachmentsRepository } from '@/domain/forum/application/repositories/answer-attachments-repository';
+import { DomainEvents } from '@/core/events/domain-events';
 
 @Injectable()
 export class PrismaAnswersResporitory implements AnswersRepository {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private answerAttachmentsRepository: AnswerAttachmentsRepository
+  ) {}
 
   async findById(id: string): Promise<Answer | null> {
     const answer = await this.prismaService.answer.findUnique({
@@ -38,10 +43,15 @@ export class PrismaAnswersResporitory implements AnswersRepository {
   async create(answer: Answer): Promise<void> {
     const data = PrismaAnswerMapper.toPrisma(answer);
 
-    await this.prismaService.question.update({
-      where: { id: data.id },
+    await this.prismaService.answer.create({
       data,
     });
+
+    await this.answerAttachmentsRepository.createMany(
+      answer.attachments.getItems()
+    );
+
+    DomainEvents.dispatchEventsForAggregate(answer.id);
   }
 
   async save(answer: Answer): Promise<void> {

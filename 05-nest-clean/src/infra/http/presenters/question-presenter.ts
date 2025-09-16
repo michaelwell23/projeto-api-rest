@@ -6,7 +6,7 @@ export class QuestionPresenter {
       id: question.id.toString(),
       title: question.title,
       slug: question.slug.value,
-      bastAnswerId: question.bestAnswerId?.toString(),
+      bestAnswer: question.bestAnswerId?.toString(),
       createdAt: question.createdAt,
       updatedAt: question.updatedAt,
     };
