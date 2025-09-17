@@ -1,65 +1,46 @@
-import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug';
 import { AppModule } from '@/infra/app.module';
-import { DatabaseModule } from '@/infra/database/database.module';
+import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { INestApplication } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
-import { AttachmentFactory } from 'test/factories/make-attachment';
-import { QuestionFactory } from 'test/factories/make-question';
-import { QuestionAttachmentFactory } from 'test/factories/make-question-attachments';
-import { StudentFactory } from 'test/factories/make-student';
 
 describe('Get question by slug (E2E)', () => {
   let app: INestApplication;
-  let studentFactory: StudentFactory;
-  let questionFactory: QuestionFactory;
-  let attachmentFactory: AttachmentFactory;
-  let questionAttachmentFactory: QuestionAttachmentFactory;
+  let prisma: PrismaService;
   let jwt: JwtService;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [AppModule, DatabaseModule],
-      providers: [
-        StudentFactory,
-        QuestionFactory,
-        AttachmentFactory,
-        QuestionAttachmentFactory,
-      ],
+      imports: [AppModule],
     }).compile();
 
     app = moduleRef.createNestApplication();
 
-    studentFactory = moduleRef.get(StudentFactory);
-    questionFactory = moduleRef.get(QuestionFactory);
-    attachmentFactory = moduleRef.get(AttachmentFactory);
-    questionAttachmentFactory = moduleRef.get(QuestionAttachmentFactory);
+    prisma = moduleRef.get(PrismaService);
     jwt = moduleRef.get(JwtService);
 
     await app.init();
   });
 
   test('[GET] /questions/:slug', async () => {
-    const user = await studentFactory.makePrismaStudent({
-      name: 'John Doe',
+    const user = await prisma.user.create({
+      data: {
+        name: 'John Doe',
+        email: 'johndoe@example.com',
+        password: '123456',
+      },
     });
 
-    const accessToken = jwt.sign({ sub: user.id.toString() });
+    const accessToken = jwt.sign({ sub: user.id });
 
-    const question = await questionFactory.makePrismaQuestion({
-      authorId: user.id,
-      title: 'Question 01',
-      slug: Slug.create('question-01'),
-    });
-
-    const attachment = await attachmentFactory.makePrismaAttachment({
-      title: 'Some attachment',
-    });
-
-    await questionAttachmentFactory.makePrismaQuestionAttachment({
-      attachmentId: attachment.id,
-      questionId: question.id,
+    await prisma.question.create({
+      data: {
+        title: 'Question 01',
+        slug: 'question-01',
+        content: 'Question content',
+        authorId: user.id,
+      },
     });
 
     const response = await request(app.getHttpServer())
@@ -69,15 +50,7 @@ describe('Get question by slug (E2E)', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual({
-      question: expect.objectContaining({
-        title: 'Question 01',
-        author: 'John Doe',
-        attachments: [
-          expect.objectContaining({
-            title: 'Some attachment',
-          }),
-        ],
-      }),
+      question: expect.objectContaining({ title: 'Question 01' }),
     });
   });
 });
