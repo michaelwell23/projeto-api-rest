@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaStudentMapper } from '../mappers/prisma-student-mapper';
 
 @Injectable()
-export class PrismaStudentRespository implements StudentsRepository {
+export class PrismaStudentsRepository implements StudentsRepository {
   constructor(private prismaService: PrismaService) {}
 
   async findByEmail(email: string): Promise<Student | null> {

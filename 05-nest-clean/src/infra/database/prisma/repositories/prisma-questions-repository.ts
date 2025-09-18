@@ -5,12 +5,48 @@ import { Injectable } from '@nestjs/common';
 import { PrismaQuestionMapper } from '../mappers/prisma-question-mapper';
 import { PrismaService } from '../prisma.service';
 import { QuestionDetails } from '@/domain/forum/enterprise/entities/value-objects/question-details';
+import { UniqueEntityID } from '@/core/entities/unique-entity-id';
+import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug';
 
 @Injectable()
 export class PrismaQuestionsRepository implements QuestionsRepository {
   constructor(private prisma: PrismaService) {}
-  findDetailsBySlug(slug: string): Promise<QuestionDetails | null> {
-    throw new Error('Method not implemented.');
+
+  async findDetailsBySlug(slug: string): Promise<QuestionDetails | null> {
+    const question = await this.prisma.question.findUnique({
+      where: { slug },
+      include: {
+        author: true,
+        answers: {
+          include: {
+            author: true,
+          },
+        },
+      },
+    });
+
+    if (!question) {
+      return null;
+    }
+
+    return QuestionDetails.create({
+      questionId: new UniqueEntityID(question.id),
+      title: question.title,
+      content: question.content,
+      slug: Slug.create(question.slug),
+      createdAt: question.createdAt,
+      updatedAt: question.updatedAt,
+      author: question.author.name,
+      answers: question.answers.map((answer) => ({
+        id: answer.id,
+        content: answer.content,
+        createdAt: answer.createdAt,
+        author: {
+          id: answer.author.id,
+          name: answer.author.name,
+        },
+      })),
+    });
   }
 
   async create(question: Question): Promise<void> {

@@ -8,7 +8,7 @@ import { AnswerAttachmentsRepository } from '@/domain/forum/application/reposito
 import { DomainEvents } from '@/core/events/domain-events';
 
 @Injectable()
-export class PrismaAnswersResporitory implements AnswersRepository {
+export class PrismaAnswersRepository implements AnswersRepository {
   constructor(
     private prismaService: PrismaService,
     private answerAttachmentsRepository: AnswerAttachmentsRepository
