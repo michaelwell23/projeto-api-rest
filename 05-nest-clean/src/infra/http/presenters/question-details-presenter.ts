@@ -5,13 +5,14 @@ export class QuestionDetailsPresenter {
   static toHTTP(questionDetails: QuestionDetails) {
     return {
       questionId: questionDetails.questionId.toString(),
-      authorId: questionDetails.authorId.toString(),
+      authorId: questionDetails.authorId?.toString() ?? null,
+      attachments:
+        questionDetails.attachments?.map(AttachmentPresenter.toHTTP) ?? [],
       author: questionDetails.author,
       title: questionDetails.title,
       content: questionDetails.content,
       slug: questionDetails.slug.value,
       bestAnswerId: questionDetails.bestAnswerId?.toString(),
-      attachments: questionDetails.attachments.map(AttachmentPresenter.toHTTP),
       createdAt: questionDetails.createdAt,
       updatedAt: questionDetails.updatedAt,
     };
