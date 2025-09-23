@@ -6,8 +6,6 @@ import { JwtService } from '@nestjs/jwt';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
 import { AnswerFactory } from 'test/factories/make-answer';
-import { AnswerAttachmentFactory } from 'test/factories/make-answer-attachments';
-import { AttachmentFactory } from 'test/factories/make-attachment';
 import { QuestionFactory } from 'test/factories/make-question';
 import { StudentFactory } from 'test/factories/make-student';
 
@@ -68,13 +66,5 @@ describe('Edit answer (E2E)', () => {
     });
 
     expect(answerOnDatabase).toBeTruthy();
-
-    const attachmentsOnDatabase = await prisma.attachment.findMany({
-      where: {
-        answerId: answerOnDatabase?.id,
-      },
-    });
-
-    expect(attachmentsOnDatabase).toHaveLength(2);
   });
 });

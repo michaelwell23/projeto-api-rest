@@ -5,9 +5,7 @@ import { INestApplication } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Test } from '@nestjs/testing';
 import request from 'supertest';
-import { AttachmentFactory } from 'test/factories/make-attachment';
 import { QuestionFactory } from 'test/factories/make-question';
-import { QuestionAttachmentFactory } from 'test/factories/make-question-attachments';
 import { StudentFactory } from 'test/factories/make-student';
 
 describe('Edit question (E2E)', () => {
@@ -43,6 +41,9 @@ describe('Edit question (E2E)', () => {
     });
 
     const questionId = question.id.toString();
+
+    console.log(question);
+    console.log('USER:', user);
 
     const response = await request(app.getHttpServer())
       .put(`/questions/${questionId}`)
