@@ -39,6 +39,7 @@ import { DeleteQuestionCommentUseCase } from '@/domain/forum/application/use-cas
 import { DeleteAnswerCommentUseCase } from '@/domain/forum/application/use-cases/delete-answer-comment';
 import { FetchAnswerCommentsUseCase } from '@/domain/forum/application/use-cases/fetch-answer-comments';
 import { ReadNotificationUseCase } from '@/domain/notification/application/use-cases/read-notification';
+import { CommentOnQuestionController } from './controllers/comment-on-question.controller';
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -50,6 +51,7 @@ import { ReadNotificationUseCase } from '@/domain/notification/application/use-c
     GetQuestionBySlugController,
     EditQuestionController,
     DeleteQuestionController,
+    CommentOnQuestionController,
     AnswerQuestionController,
     EditAnswerController,
     DeleteAnswerController,
@@ -73,6 +75,7 @@ import { ReadNotificationUseCase } from '@/domain/notification/application/use-c
     DeleteAnswerCommentUseCase,
     FetchAnswerCommentsUseCase,
     ReadNotificationUseCase,
+    CommentOnQuestionUseCase,
   ],
 })
 export class HttpModule {}
