@@ -41,6 +41,7 @@ import { FetchAnswerCommentsUseCase } from '@/domain/forum/application/use-cases
 import { ReadNotificationUseCase } from '@/domain/notification/application/use-cases/read-notification';
 import { CommentOnQuestionController } from './controllers/comment-on-question.controller';
 import { DeleteQuestionCommentController } from './controllers/delete-question-comment.controller';
+import { FetchAnswerCommentsController } from './controllers/fetch-answer-comments.controller';
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -57,6 +58,8 @@ import { DeleteQuestionCommentController } from './controllers/delete-question-c
     EditAnswerController,
     DeleteAnswerController,
     DeleteQuestionCommentController,
+    FetchAnswerCommentsUseCase,
+    FetchAnswerCommentsController,
   ],
   providers: [
     CreateQuestionUseCase,
