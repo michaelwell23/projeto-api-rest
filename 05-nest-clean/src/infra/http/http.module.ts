@@ -42,6 +42,7 @@ import { ReadNotificationUseCase } from '@/domain/notification/application/use-c
 import { CommentOnQuestionController } from './controllers/comment-on-question.controller';
 import { DeleteQuestionCommentController } from './controllers/delete-question-comment.controller';
 import { FetchAnswerCommentsController } from './controllers/fetch-answer-comments.controller';
+import { FetchQuestionAnswersController } from './controllers/fetch-question-answers.controller';
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -58,7 +59,7 @@ import { FetchAnswerCommentsController } from './controllers/fetch-answer-commen
     EditAnswerController,
     DeleteAnswerController,
     DeleteQuestionCommentController,
-    FetchAnswerCommentsUseCase,
+    FetchQuestionAnswersController,
     FetchAnswerCommentsController,
   ],
   providers: [
