@@ -63,7 +63,6 @@ import { StorageModule } from '../storage/storage.module';
     DeleteAnswerCommentController,
     FetchQuestionCommentsController,
     FetchAnswerCommentsController,
-    FetchQuestionAnswersController,
     UploadAttachmentController,
   ],
   providers: [
