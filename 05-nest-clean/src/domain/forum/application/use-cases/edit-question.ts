@@ -26,13 +26,17 @@ type EditQuestionUseCaseResponse = Either<
 
 @Injectable()
 export class EditQuestionUseCase {
-  constructor(private questionsRepository: QuestionsRepository) {}
+  constructor(
+    private questionsRepository: QuestionsRepository,
+    private questionAttachmentsRepository: QuestionAttachmentsRepository
+  ) {}
 
   async execute({
     authorId,
     questionId,
     title,
     content,
+    attachmentsIds,
   }: EditQuestionUseCaseRequest): Promise<EditQuestionUseCaseResponse> {
     const question = await this.questionsRepository.findById(questionId);
 
@@ -44,6 +48,23 @@ export class EditQuestionUseCase {
       return left(new NotAllowedError());
     }
 
+    const currentQuestionAttachments =
+      await this.questionAttachmentsRepository.findManyByQuestionId(questionId);
+
+    const questionAttachmentList = new QuestionAttachmentList(
+      currentQuestionAttachments
+    );
+
+    const questionAttachments = attachmentsIds.map((attachmentId) => {
+      return QuestionAttachment.create({
+        attachmentId: new UniqueEntityID(attachmentId),
+        questionId: question.id,
+      });
+    });
+
+    questionAttachmentList.update(questionAttachments);
+
+    question.attachments = questionAttachmentList;
     question.title = title;
     question.content = content;
 
