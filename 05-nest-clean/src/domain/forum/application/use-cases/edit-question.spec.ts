@@ -123,7 +123,7 @@ describe('Edit Question', () => {
       authorId: 'author-1',
       title: 'Pergunta teste',
       content: 'Conteúdo teste',
-      attachmentsIds: ['1', '3'],
+      attachmentsIds: ['1', '2'],
     });
 
     expect(result.isRight()).toBe(true);
@@ -134,7 +134,7 @@ describe('Edit Question', () => {
           attachmentId: new UniqueEntityID('1'),
         }),
         expect.objectContaining({
-          attachmentId: new UniqueEntityID('3'),
+          attachmentId: new UniqueEntityID('2'),
         }),
       ])
     );
