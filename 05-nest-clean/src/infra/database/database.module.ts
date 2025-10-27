@@ -45,12 +45,12 @@ import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attach
       useClass: PrismaAnswerCommentsRepository,
     },
     {
-      provide: AttachmentsRepository,
-      useClass: PrismaAttachmentsRepository,
-    },
-    {
       provide: AnswerAttachmentsRepository,
       useClass: PrismaAnswerAttachmentsRepository,
+    },
+    {
+      provide: AttachmentsRepository,
+      useClass: PrismaAttachmentsRepository,
     },
   ],
   exports: [
@@ -63,7 +63,6 @@ import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attach
     AnswerCommentsRepository,
     AnswerAttachmentsRepository,
     AttachmentsRepository,
-    AnswerAttachmentsRepository,
   ],
 })
 export class DatabaseModule {}
