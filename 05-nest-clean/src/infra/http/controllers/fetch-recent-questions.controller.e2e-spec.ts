@@ -3,13 +3,11 @@ import { DatabaseModule } from '@/infra/database/database.module';
 import { INestApplication } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Test } from '@nestjs/testing';
-import { title } from 'process';
 import request from 'supertest';
-import { AnswerFactory } from 'test/factories/make-answer';
 import { QuestionFactory } from 'test/factories/make-question';
 import { StudentFactory } from 'test/factories/make-student';
 
-describe('Fetch question question (E2E)', () => {
+describe('Fetch recent questions (E2E)', () => {
   let app: INestApplication;
   let studentFactory: StudentFactory;
   let questionFactory: QuestionFactory;
@@ -47,7 +45,7 @@ describe('Fetch question question (E2E)', () => {
     ]);
 
     const response = await request(app.getHttpServer())
-      .get(`/questions`)
+      .get('/questions')
       .set('Authorization', `Bearer ${accessToken}`)
       .send();
 
