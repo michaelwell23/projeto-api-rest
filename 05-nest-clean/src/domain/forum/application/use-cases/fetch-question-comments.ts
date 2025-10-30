@@ -17,19 +17,18 @@ type FetchQuestionCommentsUseCaseResponse = Either<
 
 @Injectable()
 export class FetchQuestionCommentsUseCase {
-  constructor(private questionCommentsRepository: QuestionCommentsRepository) {}
+  constructor(private questionComments: QuestionCommentsRepository) {}
 
   async execute({
     questionId,
     page,
   }: FetchQuestionCommentsUseCaseRequest): Promise<FetchQuestionCommentsUseCaseResponse> {
-    const comments =
-      await this.questionCommentsRepository.findManyByQuestionIdWithAuthor(
-        questionId,
-        {
-          page,
-        }
-      );
+    const comments = await this.questionComments.findManyByQuestionIdWithAuthor(
+      questionId,
+      {
+        page,
+      }
+    );
 
     return right({
       comments,
