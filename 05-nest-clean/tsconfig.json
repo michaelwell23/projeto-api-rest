@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -11,15 +10,16 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
+    "ignoreDeprecations": "6.0",
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
     "types": ["vitest/globals", "multer"]
   }
